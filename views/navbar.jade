@@ -1,0 +1,37 @@
+.navbar.navbar-default.navbar-fixed-top
+  .container
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='/')
+        i.fa.fa-cube
+        | Run It
+    .collapse.navbar-collapse
+      ul.nav.navbar-nav
+        if !userToken || userToken === ''
+          li(class=(title == 'home') ? 'active' : undefined)
+            a(href='/') Home
+          li(class=(title == 'about') ? 'active' : undefined)
+            a(href='/about') Our Team
+        else
+          ul.nav.navbar-nav
+            li
+              a(href='/') Home
+            li
+              a(href='/events') Events
+
+      ul.nav.navbar-nav.navbar-right
+        if !userToken || userToken === ''
+          li(class=(title == 'login') ? 'active' : undefined)
+            a(href='/login') Login
+          li(class=(title == 'signup') ? 'active' : undefined)
+            a(href='/signup') Create Account
+        else
+          ul.nav.navbar-nav.navbar-right
+            li
+              a(href='#') My Account
+            li
+              a(href='/logout') Logout

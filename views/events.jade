@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  button#addEventbtn.btn.btn-primary(type='button', data-toggle='modal', data-target='#exampleModal', data-whatever='@getbootstrap') Add Event
+  for result in results
+    .row
+      .col-md-11.col-md-offset-1.block-container
+        .col-md-2
+          img.img-responsive(src='images/picto.png', alt='')
+          |         
+        .col-md-10
+          h3
+            | #{result.name}
+          |           
+          p
+            | date : #{result.date}
+            br
+            |  src_latitude : #{result.src_latitude}           
+            br
+            |  src_longitude : #{result.src_latitude}

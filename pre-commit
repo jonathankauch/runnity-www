@@ -1,0 +1,29 @@
+#!/bin/sh
+FILES=$(git diff --cached --name-only --diff-filter=ACM | grep ".js$")
+SUCCESS_FILE=".success.tmp"
+PASS=true
+if [ "$FILES" = "" ]; then
+    exit 0
+fi
+if [ ! -f "$SUCCESS_FILE" ]; then
+    gulp lint
+    if [ "$?" != "0" ]; then
+        exit 1
+    fi
+fi
+echo "\n\033[36mValidating JavaScript:\033[0m\n"
+for file in ${FILES}; do
+    if [[ "${file}" == src/* ]]; then
+        ./node_modules/.bin/eslint "${file}"
+        if [ $? -eq 0 ]; then
+            echo "\tValidation \033[32mPassed\033[0m: ${file}"
+        else
+            echo "\tValidation \033[31mFailed\033[0m: ${file}"
+            PASS=false
+        fi
+    fi
+done
+echo "\n"
+if [ $PASS == false ]; then
+    exit 1
+fi

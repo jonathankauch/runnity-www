@@ -1,0 +1,145 @@
+extends layout
+block content
+  if !userToken || userToken === ''
+    h1#title  Welcome on Run It
+        |       
+        h4#sub-title  The social network for runners 
+        |       
+        #myCarousel.carousel.slide
+          // Indicators
+          ol.carousel-indicators
+            li.active(data-target='#myCarousel', data-slide-to='0')
+            |         
+            li(data-target='#myCarousel', data-slide-to='1')
+            |         
+            li(data-target='#myCarousel', data-slide-to='2')
+          // Wrapper for slides
+          .carousel-inner(role='listbox')
+            .item.active
+              img(src='images/bg.jpg', alt='Runnity')
+            |     
+            .item
+              img(src='images/bg2.jpg', alt='Runnity')
+            |     
+            .item
+              img(src='images/bg3.jpg', alt='Runnity')
+          // Controls
+          a.left.carousel-control(href='#myCarousel', data-slide='prev')
+            span.icon-prev
+          |     
+          a.right.carousel-control(href='#myCarousel', data-slide='next')
+            span.icon-next
+        .row
+          .col-lg-12
+            h1.page-header
+              | Main features
+          |            
+          .col-md-4
+            .panel.panel-default
+              .panel-heading
+                h4
+                  i.fa.fa-fw.fa-heart
+                  |  Social Aspect
+              |                    
+              .panel-body
+                p
+                  | We provide a social aspect which is not actually on the market. We mean that each user could communicate each other, participate to runs, create runs, create a group ...
+          |            
+          .col-md-4
+            .panel.panel-default
+              .panel-heading
+                h4
+                  i.fa.fa-fw.fa-bar-chart
+                  |  Tracking System
+              |                    
+              .panel-body
+                p
+                  | We provide a Tracking system, which is based on every runs done by the user. We calculate the VMA, the burned calories ... This is send by email daily, weekly or monthly
+          |            
+          .col-md-4
+            .panel.panel-default
+              .panel-heading
+                h4
+                  i.fa.fa-fw.fa.fa-bars
+                  |  Ranking System
+              |                    
+              .panel-body
+                p
+                  | We provide a Ranking system, which is based mostly on the results of the tracking system. The aim of this system is to create a competitive environement beetween the runners
+  else
+    .row
+      .col-md-3.block-container.block-profile
+        img.img-circle.img-responsive.img-center(height='200px', width='200px', src='images/avatar.jpg', alt='')
+        |         
+        h3.text-center
+          | #{firstname} #{lastname}
+        |         
+        p
+          | Biography
+        |         
+        p
+          i.fa.fa-map-marker
+          |   address, city, country
+        |         
+        p
+          | Nomber of runs : 
+      |       
+      .col-md-9
+        h2  My runs        
+        .row(ng-repeat='run in runs')
+          .col-md-11.col-md-offset-1.block-container
+            .col-md-2
+              img.img-responsive(src='images/picto.png', alt='')
+            |             
+            .col-md-10
+              h3
+                | RUN NAME
+              |               
+              p
+                | Informations : 
+                br
+                |                 
+                i.fa.fa-calendar
+                |  : 
+                |                 
+                br
+                |  latitude : 
+                |                 
+                br
+                |  longitude : 
+                |                 
+                br
+                |  Max speed : 
+                |                 
+                br
+                |  Distance : 
+              |               
+              //button.btn.btn-default(type='button', ng-click='deleteRuns(run);') Delete
+        |         
+        h2  My events         
+        .row(ng-repeat='event in events')
+          .col-md-11.col-md-offset-1.block-container
+            .col-md-2
+              img.img-responsive(src='images/picto.png', alt='')
+            |             
+            .col-md-10
+              h3
+                | EVENT NAME
+              |               
+              p
+                | Informations : 
+                br
+                |                 
+                i.fa.fa-calendar
+                |  : 
+                |                 
+                br
+                |  latitude : 
+                |                 
+                br
+                |  longitude : 
+    
+          
+                                                                                                                    
+  // Team Members Row
+  // /container
